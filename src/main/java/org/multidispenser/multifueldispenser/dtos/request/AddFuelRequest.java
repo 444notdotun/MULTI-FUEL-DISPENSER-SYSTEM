@@ -2,10 +2,10 @@ package org.multidispenser.multifueldispenser.dtos.request;
 
 import lombok.Data;
 import org.multidispenser.multifueldispenser.data.models.FuelDispenser;
-
 @Data
-public class FuelDispenserRequest {
+public class AddFuelRequest {
     private String FuelType;
-    private double litersToBeDischarged;
-
+    private double fuelPrice;
+    private double quantity;
+    private FuelDispenser fuelDispenser;
 }

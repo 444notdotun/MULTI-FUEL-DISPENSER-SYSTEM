@@ -1,11 +1,13 @@
 package org.multidispenser.multifueldispenser.data.repository;
 
-import com.mongodb.client.MongoDatabase;
 import org.multidispenser.multifueldispenser.data.models.Fuel;
-import org.multidispenser.multifueldispenser.data.models.FuelDispenser;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public interface FuelDispenserRepository  extends MongoRepository<FuelDispenser, String> {
+public interface FuelRepo extends MongoRepository<Fuel, String> {
+    Fuel findByNameIgnoreCase(String name);
+
 }
