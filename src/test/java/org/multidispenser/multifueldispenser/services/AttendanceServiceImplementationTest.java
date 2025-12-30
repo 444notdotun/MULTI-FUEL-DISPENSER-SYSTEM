@@ -51,7 +51,7 @@ class AttendanceServiceImplementationTest {
         attendantRepository.deleteAll();
 
         createAttendantRequest = new CreateAttendantRequest();
-        attendant = new Attendant("DOTUN" ,true,new ArrayList<>());
+        attendant = new Attendant("DOTUN" ,true);
         fuelDispenser = FuelDispenser.getInstance();
         fuelDispenserRequest = new FuelDispenserRequest();
         fuelDispenserRequest.setFuelType("PETROL");
@@ -71,7 +71,6 @@ class AttendanceServiceImplementationTest {
     @Test
     public void fuelCanBeCreated(){
         request = new AddFuelRequest();
-        request.setFuelDispenser(fuelDispenser);
         request.setFuelType("PETROL");
         request.setFuelPrice(500);
         request.setQuantity(5000);
@@ -80,7 +79,7 @@ class AttendanceServiceImplementationTest {
     @Test
     public void fuelCanBeCreatedAndAddedToDispenser(){
         request = new AddFuelRequest();
-        request.setFuelDispenser(fuelDispenser);
+//        request.setFuelDispenser(fuelDispenser);
         request.setFuelType("PETROL");
         request.setFuelPrice(500);
         request.setQuantity(5000);
@@ -92,7 +91,7 @@ class AttendanceServiceImplementationTest {
     @Test
     public void fuelDispenserCanDispenseFuel(){
         request = new AddFuelRequest();
-        request.setFuelDispenser(fuelDispenser);
+//        request.setFuelDispenser(fuelDispenser);
         request.setFuelType("PETROL");
         request.setFuelPrice(500);
         request.setQuantity(5000);
@@ -110,7 +109,7 @@ class AttendanceServiceImplementationTest {
     @Test
     public void DispenserCanNotDispenseWhenWhenFuelQuantityIsZero(){
         request = new AddFuelRequest();
-        request.setFuelDispenser(fuelDispenser);
+//        request.setFuelDispenser(fuelDispenser);
         request.setFuelType("PETROL");
         request.setFuelPrice(500);
         request.setQuantity(5000);
@@ -125,7 +124,6 @@ class AttendanceServiceImplementationTest {
     @Test
     public void fuelDispenserCanBeSoldFuel(){
         request = new AddFuelRequest();
-        request.setFuelDispenser(fuelDispenser);
         request.setFuelType("PETROL");
         request.setFuelPrice(500);
         request.setQuantity(5000);
@@ -135,6 +133,24 @@ class AttendanceServiceImplementationTest {
         assertNotNull(fuelDispenser.getFuels().get("PETROL"));
         assertEquals("THANK YOU FOR YOUR PATRONAGE",attendantService.sellFuel(sellFuelRequest).getMessage());
         assertEquals(4000,fuelDispenser.getFuels().get(fuelDispenserRequest.getFuelType()).getQuantity());
+    }
+
+    @Test
+    public void fuelDispenserCanBeSellFuelOnAmount(){
+        request = new AddFuelRequest();
+        request.setFuelType("PETROL");
+        request.setFuelPrice(500);
+        request.setQuantity(5000);
+        assertEquals("welcome! registration successful!",adminServices.createAttendant(createAttendantRequest).getMessage());
+        assertNotNull(Mapper.mapAddFuelRequest(request));
+        attendantService.addFuel(request);
+        assertNotNull(fuelDispenser.getFuels().get("PETROL"));
+        sellFuelRequest.setAmount(4000);
+        sellFuelRequest.setLiters(0);
+        sellFuelRequest.setAttendantName("dotun");
+        sellFuelRequest.setBuyOption("amount");
+        assertEquals("THANK YOU FOR YOUR PATRONAGE",attendantService.sellFuel(sellFuelRequest).getMessage());
+        assertEquals(4992,fuelDispenser.getFuels().get(fuelDispenserRequest.getFuelType()).getQuantity());
     }
 
 

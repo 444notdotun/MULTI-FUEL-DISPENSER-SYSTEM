@@ -7,7 +7,7 @@ import org.multidispenser.multifueldispenser.dtos.response.SellFuelResponse;
 import org.springframework.stereotype.Service;
 
 @Service
-interface   AttendantService  {
+public interface   AttendantService  {
     AddFuelResponse addFuel(AddFuelRequest request);
     SellFuelResponse sellFuel(SellFuelRequest request);
 

@@ -16,7 +16,7 @@ public class AdminServicesImplementation implements  AdminServices{
     }
     @Override
     public CreateAttendantResponse createAttendant(CreateAttendantRequest request) {
-        Attendant attendant = new Attendant(request.getName(),true,new ArrayList<>());
+        Attendant attendant = new Attendant(request.getName(),true);
         CreateAttendantResponse response = new CreateAttendantResponse();
         response.setMessage("welcome! registration successful!");
         attendantRepository.save(attendant);

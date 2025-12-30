@@ -42,26 +42,4 @@ public class FuelDispenserImplementation implements FuelDispenserService {
     }
 
 
-
-//    private Double determinePrice(String buyOption,String fuelName,FuelDispenser fuelDispenser,double amount ,Transactions transactions){
-//        double result=0;
-//        buyOption= buyOption.toLowerCase();
-//        switch (buyOption){
-//            case "amount"->{
-//               result =  amount /checkForFuel(fuelName,fuelDispenser).getPrice();
-//               transactions.setAmount(result);
-//                transactions.setLiters(result*checkForFuel(fuelName,fuelDispenser).getPrice());
-//
-//            }
-//            case "liters"->{
-//               result = amount*checkForFuel(fuelName,fuelDispenser).getPrice();
-//               transactions.setLiters(result);
-//               transactions.setAmount(result/checkForFuel(fuelName,fuelDispenser).getPrice());
-//            }
-//            default -> throw  new ValidateFuelDecision("ENTER A VALID INPUT");
-//        }
-//        return result;
-//    }
-
-
 }

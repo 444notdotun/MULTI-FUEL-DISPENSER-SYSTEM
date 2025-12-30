@@ -7,5 +7,4 @@ public class AddFuelRequest {
     private String FuelType;
     private double fuelPrice;
     private double quantity;
-    private FuelDispenser fuelDispenser;
 }
